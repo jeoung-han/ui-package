@@ -1,0 +1,83 @@
+// ========================================
+// 라이브러리 CSS Reset
+// .lib-root 클래스로 스코프를 제한하여 
+// 사용자 프로젝트에 영향을 최소화합니다.
+// ========================================
+
+.lib-root,
+.lib-root * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.lib-root {
+  // 폼 요소 초기화
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+    border: none;
+    background: none;
+    outline: none;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    text-transform: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+
+  // 비활성화된 버튼
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  // 리스트 스타일 제거
+  ul,
+  ol {
+    list-style: none;
+  }
+
+  // 링크 스타일 초기화
+  a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  // 이미지 반응형
+  img,
+  svg,
+  picture,
+  video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  // 제목 요소 리셋
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+  }
+
+
+  // 코드 요소
+  code,
+  pre {
+    font-family: monospace;
+  }
+}

@@ -22,17 +22,22 @@ export default defineConfig({
     })
   ],
 
+  // Path Alias 설정
+  resolve: {
+    alias: {
+      '@': path.resolve(dirname, './src'),
+    },
+  },
+
   // 2. 라이브러리 빌드 설정 추가
   build: {
     lib: {
-      // 라이브러리의 진입점 (src/index.ts 파일이 필요합니다)
       entry: path.resolve(dirname, 'src/index.ts'),
       name: 'MyUILibrary',
       formats: ['es', 'umd'],
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      // 사용자가 설치했을 때 중복되지 않도록 리액트를 빌드에서 제외
       external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
         globals: {
@@ -46,7 +51,6 @@ export default defineConfig({
     emptyOutDir: true, // 빌드 시 dist 폴더 비우기
   },
 
-  // 3. 기존 테스트 설정 (그대로 유지)
   test: {
     projects: [{
       extends: true,
@@ -68,5 +72,14 @@ export default defineConfig({
         setupFiles: ['.storybook/vitest.setup.ts']
       }
     }]
-  }
+  },
+
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // 이 설정을 하면 모든 scss 파일에서 변수/믹스인을 바로 쓸 수 있습니다.
+        additionalData: `@use "@/styles/_shared.scss" as *;`
+      }
+    }
+  },
 });

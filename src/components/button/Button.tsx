@@ -1,37 +1,41 @@
 import React from 'react';
+import '@/styles/index.scss';
+import './newButton.scss';
 
-import './button.css';
-
-export interface ButtonProps {
-  /** Is this the principal call to action on the page? */
-  primary?: boolean;
-  /** What background color to use */
-  backgroundColor?: string;
-  /** How large should the button be? */
-  size?: 'small' | 'medium' | 'large';
-  /** Button contents */
+export interface NewButtonProps {
+  /** 버튼 라벨 */
   label: string;
-  /** Optional click handler */
-  onClick?: () => void;
+  /** 버튼 타입 (button, submit, reset) */
+  type?: 'button' | 'submit' | 'reset';
+  /** 비활성화 여부 */
+  disabled?: boolean;
+  /** 클릭 이벤트 */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  /** 크기 */
+  size?: 'sm' | 'md' | 'lg';
+  /** 스타일(variant) */
+  variant?: 'primary' | 'secondary' | 'danger';
 }
 
-/** Primary UI component for user interaction */
-export const Button = ({
-  primary = false,
-  size = 'medium',
-  backgroundColor,
+export const NewButton: React.FC<NewButtonProps> = ({
   label,
-  ...props
-}: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  type = 'button',
+  disabled = false,
+  size = 'md',
+  variant = 'primary',
+  onClick,
+  ...rest
+}) => {
   return (
     <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
-      {...props}
+      type={type}
+      disabled={disabled}
+      className={`lib-btn lib-btn--${variant} lib-btn--${size}`}
+      onClick={onClick}
+      {...rest}
     >
       {label}
     </button>
   );
 };
+

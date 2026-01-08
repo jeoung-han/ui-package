@@ -1,72 +1,142 @@
+// ========================================
+// BUTTON MIXINS
+// ========================================
+
+// $color: 컬러명 (primary, secondary, danger, success, warning, info)
+// $variant: 형태 (fill, outline, text)
+@mixin button-variant($color: 'primary', $variant: 'fill') {
+  $color-main: var(--lib-#{$color}-main);
+  $color-dark: var(--lib-#{$color}-dark);
+  
+  @if $variant == 'fill' {
+    background: #{$color-main};
+    color: #fff;
+    border-color: transparent;
+    border-width: var(--lib-btn-border-width-fill);
+    
+    &:hover:not(:disabled) {
+      background: #{$color-dark};
+      color: #fff;
+      border-color: transparent;
+    }
+    
+    &:active:not(:disabled) {
+      background: #{$color-dark};
+      color: #fff;
+      border-color: transparent;
+    }
+    
+    &:disabled {
+      background: var(--lib-disabled-main);
+      color: #fff;
+      border-color: transparent;
+    }
+  }
+  
+  @if $variant == 'outline' {
+    background: transparent;
+    color: #{$color-main};
+    border-color: #{$color-main};
+    border-width: var(--lib-btn-border-width-outline);
+    
+    &:hover:not(:disabled) {
+      background: #{$color-main};
+      color: #fff;
+      border-color: #{$color-main};
+    }
+    
+    &:active:not(:disabled) {
+      background: #{$color-dark};
+      color: #fff;
+      border-color: #{$color-dark};
+    }
+    
+    &:disabled {
+      background: transparent;
+      color: var(--lib-disabled-main);
+      border-color: var(--lib-disabled-main);
+    }
+  }
+  
+  @if $variant == 'text' {
+    background: transparent;
+    color: #{$color-main};
+    border-color: transparent;
+    border-width: var(--lib-btn-border-width-text);
+    
+    &:hover:not(:disabled) {
+      background: rgba(0, 0, 0, 0.05);
+      color: #{$color-dark};
+      border-color: transparent;
+    }
+    
+    &:active:not(:disabled) {
+      background: rgba(0, 0, 0, 0.1);
+      color: #{$color-dark};
+      border-color: transparent;
+    }
+    
+    &:disabled {
+      background: transparent;
+      color: var(--lib-disabled-main);
+      border-color: transparent;
+    }
+  }
+}
+
+// ========================================
+// BUTTON STYLES
+// ========================================
+
 .lib-btn {
-  @include button-reset;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5em;
-  padding: var(--lib-space-2) var(--lib-space-4);
-  border-radius: var(--lib-radius-md);
-  font-family: var(--lib-font-family);
-  font-size: var(--lib-font-size-base);
-  font-weight: 500;
-  line-height: 1.4;
+  gap: var(--lib-btn-gap);
+  border-style: solid;
+  border-radius: var(--lib-btn-radius);
+  font-family: var(--lib-btn-font-family);
+  font-size: var(--lib-btn-font-size);
+  font-weight: var(--lib-btn-font-weight);
+  line-height: 100%;
   cursor: pointer;
-  transition: background var(--lib-transition-base), color var(--lib-transition-base);
+  transition: var(--lib-btn-transition);
+  //box-shadow: var(--lib-btn-shadow);
+  
+  // 기본 크기 (md)
+  height: var(--lib-btn-height-md);
+  padding: var(--lib-btn-padding-y-md) var(--lib-btn-padding-x-md);
 
-  &--primary {
-    background: var(--lib-primary);
-    color: #fff;
-    &:hover {
-      background: darken(var(--lib-primary), 7%);
-    }
-    &:active {
-      background: darken(var(--lib-primary), 14%);
+  // 컬러 × 형태 조합
+  @each $color in $ui-colors {
+    @each $variant in fill, outline, text {
+      &--#{$color}-#{$variant} {
+        @include button-variant($color, $variant);
+      }
     }
   }
 
-  &--secondary {
-    background: var(--lib-secondary);
-    color: #fff;
-    &:hover {
-      background: darken(var(--lib-secondary), 7%);
-    }
-    &:active {
-      background: darken(var(--lib-secondary), 14%);
-    }
-  }
 
-  &--danger {
-    background: var(--lib-error);
-    color: #fff;
-    &:hover {
-      background: darken(var(--lib-error), 7%);
-    }
-    &:active {
-      background: darken(var(--lib-error), 14%);
-    }
-  }
-
+  // 크기별 스타일
   &--sm {
-    font-size: 0.85em;
-    padding: var(--lib-space-1) var(--lib-space-2);
-    border-radius: var(--lib-radius-sm);
-  }
-  &--md {
-    font-size: 1em;
-    padding: var(--lib-space-2) var(--lib-space-4);
-    border-radius: var(--lib-radius-md);
-  }
-  &--lg {
-    font-size: 1.15em;
-    padding: var(--lib-space-3) var(--lib-space-6);
-    border-radius: var(--lib-radius-lg);
+    height: var(--lib-btn-height-sm);
+    padding: var(--lib-btn-padding-y-sm) var(--lib-btn-padding-x-sm);
   }
 
+  &--md {
+    height: var(--lib-btn-height-md);
+    padding: var(--lib-btn-padding-y-md) var(--lib-btn-padding-x-md);
+  }
+
+  &--lg {
+    height: var(--lib-btn-height-lg);
+    padding: var(--lib-btn-padding-y-lg) var(--lib-btn-padding-x-lg);
+  }
+
+  // 비활성화 상태
   &:disabled,
   &[aria-disabled='true'] {
-    background: var(--lib-secondary);
-    color: #fff;
-    opacity: 0.7;
     cursor: not-allowed;
+    opacity: 0.6;
   }
 }

@@ -1,36 +1,26 @@
 import React from 'react';
 import '@/styles/index.scss';
-import './newButton.scss';
+import './button.scss';
+import type { ButtonProps } from './Button.types';
+import { getButtonClassName } from './button.utils';
 
-export interface NewButtonProps {
-  /** 버튼 라벨 */
-  label: string;
-  /** 버튼 타입 (button, submit, reset) */
-  type?: 'button' | 'submit' | 'reset';
-  /** 비활성화 여부 */
-  disabled?: boolean;
-  /** 클릭 이벤트 */
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  /** 크기 */
-  size?: 'sm' | 'md' | 'lg';
-  /** 스타일(variant) */
-  variant?: 'primary' | 'secondary' | 'danger';
-}
-
-export const NewButton: React.FC<NewButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   label,
   type = 'button',
   disabled = false,
   size = 'md',
-  variant = 'primary',
+  variant = 'fill',
+  color = 'primary',
   onClick,
   ...rest
 }) => {
+  const className = getButtonClassName(color, variant, size);
+
   return (
     <button
       type={type}
       disabled={disabled}
-      className={`lib-btn lib-btn--${variant} lib-btn--${size}`}
+      className={className}
       onClick={onClick}
       {...rest}
     >
@@ -38,4 +28,7 @@ export const NewButton: React.FC<NewButtonProps> = ({
     </button>
   );
 };
+
+// 타입도 export하여 외부에서 사용 가능하도록
+export type { ButtonProps } from './Button.types';
 

@@ -1,4 +1,48 @@
+// ==========================================
+// UI 컬러/사이즈 SCSS Map 및 리스트 선언
+// ==========================================
+$ui-colors: primary, secondary, danger, success, warning, info;
+$ui-sizes: sm, md, lg;
+
 :root {
+  // ==========================
+  // COLOR TOKENS (Main/Light/Dark/Text)
+  // ==========================
+  --lib-primary-main: #3b82f6;
+  --lib-primary-light: #60a5fa;
+  --lib-primary-dark: #2563eb;
+  --lib-primary-text: #3b82f6;
+
+  --lib-secondary-main: #8b5cf6;
+  --lib-secondary-light: #a78bfa;
+  --lib-secondary-dark: #7c3aed;
+  --lib-secondary-text: #8b5cf6;
+
+  --lib-disabled-main: #9ca3af;
+  --lib-disabled-light: #d1d5db;
+  --lib-disabled-dark: #6b7280;
+  --lib-disabled-text: #9ca3af;
+
+  --lib-danger-main: #ef4444;
+  --lib-danger-light: #f87171;
+  --lib-danger-dark: #b91c1c;
+  --lib-danger-text: #ef4444;
+
+  --lib-success-main: #22c55e;
+  --lib-success-light: #4ade80;
+  --lib-success-dark: #15803d;
+  --lib-success-text: #22c55e;
+
+  --lib-warning-main: #f59e42;
+  --lib-warning-light: #fbbf24;
+  --lib-warning-dark: #c2410c;
+  --lib-warning-text: #f59e42;
+
+  --lib-info-main: #2094fa;
+  --lib-info-light: #60a5fa;
+  --lib-info-dark: #1d4ed8;
+  --lib-info-text: #2094fa;
+
   // Colors
   --lib-primary: #3b82f6;
   --lib-secondary: #64748b;
@@ -38,4 +82,32 @@
   // Duration
   --lib-transition-fast: 0.15s;
   --lib-transition-base: 0.25s;
+
+// ===============================
+// BUTTON
+// ===============================
+  // 기본 속성
+  --lib-btn-height-sm: 28px;
+  --lib-btn-height-md: 40px;
+  --lib-btn-height-lg: 48px;
+
+  --lib-btn-padding-x-sm: 12px;
+  --lib-btn-padding-x-md: 20px;
+  --lib-btn-padding-x-lg: 28px;
+
+  --lib-btn-padding-y-sm: 4px;
+  --lib-btn-padding-y-md: 8px;
+  --lib-btn-padding-y-lg: 12px;
+
+  --lib-btn-radius: var(--lib-radius-md);
+  --lib-btn-border-width-fill: 0;
+  --lib-btn-border-width-outline: 1px;
+  --lib-btn-border-width-text: 0;
+
+  --lib-btn-transition: var(--lib-transition-base);
+  --lib-btn-font-family: var(--lib-font-family);
+  --lib-btn-font-weight: 500;
+  --lib-btn-font-size: var(--lib-font-size-base);
+  --lib-btn-gap: 0.5em;
 }
+

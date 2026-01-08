@@ -50,19 +50,6 @@
   }
 }
 
-// 버튼 리셋 (기본 스타일 제거)
-@mixin button-reset {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-  outline: none;
-  text-decoration: none;
-}
-
 // 반응형 미디어쿼리 (모바일 우선)
 @mixin respond-to($breakpoint) {
   @if $breakpoint == 'sm' {
@@ -132,21 +119,6 @@
   // Firefox
   scrollbar-width: thin;
   scrollbar-color: $thumb-color $track-color;
-}
-
-// 포커스 스타일 (접근성)
-@mixin focus-ring($color: var(--lib-primary, #3b82f6), $offset: 2px) {
-  outline: 2px solid $color;
-  outline-offset: $offset;
-}
-
-// 클리어픽스
-@mixin clearfix {
-  &::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
 }
 
 // 텍스트 숨기기 (접근성을 위한 스크린 리더 전용)
